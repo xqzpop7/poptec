@@ -33,4 +33,4 @@ jobs:
               with:
                 prefix-key: ${{ matrix.target }}
             
-            - run: cargo build --target=${{ matrix.target }} --release
+            - run: cargo build --target=${{ matrix.target }} --release --verbose

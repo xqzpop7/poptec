@@ -7,7 +7,6 @@ edition = "2024"
 version = "0.0.1"
 
 license = "Apache-2.0"
-license-file = "LICENSE.txt"
 
 readme = "README.md"
 
