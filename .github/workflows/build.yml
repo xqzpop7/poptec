@@ -1,0 +1,36 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        name: Build for ${{ matrix.name }}
+
+        env:
+            CARGO_TERM_COLOR: always
+        
+        strategy:
+            matrix:
+                include:
+                    - name: Linux
+                      target: x86_64-unknown-linux-gnu
+
+                    - name: Windows
+                      target: x86_64-pc-windows-gnu
+        steps:
+            - uses: actions/checkout@v4
+            
+            - run: sudo apt-get update && sudo apt-get install g++ pkg-config libx11-dev libasound2-dev libudev-dev libxkbcommon-x11-0 libwayland-dev libxkbcommon-dev
+
+            - run: sudo apt-get install mingw-w64
+              if: matrix.name == 'Windows'
+            
+            - run: rustup toolchain install stable --profile minimal
+            - run: rustup target add ${ { matrix.target } }
+            
+            - uses: Swatinem/rust-cache@v2
+              with:
+                prefix-key: ${ { matrix.target } }
+            
+            - run: cargo build --target=${ { matrix.target } } --release

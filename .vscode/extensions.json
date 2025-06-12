@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        // Basic Rust Support
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "vadimcn.vscode-lldb",
+
+        // Github Specific Extensions
+        "GitHub.vscode-github-actions",
+        "GitHub.copilot",
+
+        // Miscellaneous
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}
