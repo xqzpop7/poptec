@@ -1,4 +1,4 @@
-name: Build
+name: Build Debug 
 
 on:
   push:
@@ -19,9 +19,9 @@ on:
       - 'README.md'
 
 jobs:
-    build:
+    build-debug:
+        name: ${{ matrix.name }}
         runs-on: ubuntu-latest
-        name: Build for ${{ matrix.name }}
 
         env:
             CARGO_TERM_COLOR: always
@@ -49,4 +49,4 @@ jobs:
               with:
                 prefix-key: ${{ matrix.target }}
             
-            - run: cargo build --target=${{ matrix.target }} --release --verbose
+            - run: cargo build --target=${{ matrix.target }} --verbose
