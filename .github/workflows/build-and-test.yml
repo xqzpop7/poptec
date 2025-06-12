@@ -1,4 +1,4 @@
-name: Build Debug 
+name: Build & Test
 
 on:
   push:
@@ -17,9 +17,10 @@ on:
       - '.gitignore'
       - 'LICENSE.txt'
       - 'README.md'
+  workflow_dispatch:
 
 jobs:
-    build-debug:
+    build:
         name: ${{ matrix.name }}
         runs-on: ubuntu-latest
 
@@ -50,3 +51,5 @@ jobs:
                 prefix-key: ${{ matrix.target }}
             
             - run: cargo build --target=${{ matrix.target }} --verbose
+            
+            - run: cargo test --target=${{ matrix.target }} --verbose
